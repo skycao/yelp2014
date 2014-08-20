@@ -1,4 +1,8 @@
 # ignore all files in data directory
 data/
 
+# ignore backup files
 *~
+
+# ignore .pyc files
+*.pyc
