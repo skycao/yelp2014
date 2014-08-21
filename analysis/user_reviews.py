@@ -1,3 +1,5 @@
+# run with ipython -pylab -i user_reviews.py
+
 FILE_DIR = "../utilities/"
 
 import sys
@@ -15,6 +17,6 @@ def get_user_review_counts():
     return user_reviews
 
 def user_reviews_hist():
-    plt.hist(get_user_review_counts())
+    plt.hist(get_user_review_counts(), log=True)
 
 
