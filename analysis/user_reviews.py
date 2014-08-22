@@ -12,8 +12,11 @@ import matplotlib.pyplot as plt
 
 user_file = "yelp_academic_dataset_user.json"
 
+def get_user_data():
+    return parse.parse_into_dicts(user_file)
+
 def get_user_review_counts():
-    user_data = parse.parse_into_dicts(user_file);
+    user_data = get_user_data()
     user_reviews = [user["review_count"] for user in user_data]
     return user_reviews
 
