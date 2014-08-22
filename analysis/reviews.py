@@ -1,7 +1,4 @@
-FILE_DIR = "../utilities"
-
-import sys
-sys.path.insert(0, FILE_DIR)
+from config import *
 
 import parse
 import shingle
@@ -31,4 +28,6 @@ def partition_by_rating():
 def make_shingles_for_each_star():
     partition = partition_by_rating()
     return [make_set_of_shingles(category) for category in partition]
+
+
     

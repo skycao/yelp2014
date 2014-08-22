@@ -1,9 +1,6 @@
 # run with ipython --matplotlib auto -i user_reviews.py
 
-FILE_DIR = "../utilities/"
-
-import sys
-sys.path.insert(0, FILE_DIR)
+from config import *
 
 import parse
 import numpy
