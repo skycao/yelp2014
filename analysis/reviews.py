@@ -54,19 +54,27 @@ def train_review_data():
         length = len(category) / 2
         data += category[:length]
         # reviews in each category have their star rating as the label
-        labels.append([rating + 1] * length)
+        labels += [rating + 1] * length
     return kNN.makeKNNClassifier(data, labels, NEAREST_NEIGHBOR_THRESHOLD, review_distance)
     
 # tests on second half of reviews from each star rating category
 def test_review_data():
     classifier = train_review_data()
+    print("learning done")
     data, labels = [], []
     for rating, category in enumerate(partition):
         length = len(category) / 2
         data += category[length:]
         # reviews in each category have their star rating as the label
-        labels.append([rating + 1] * length)
-    abs_dist = 0
+        labels += [rating + 1] * length
+    print("beginning to test model")
+    abs_dist = []
     for datum, label in zip(data, labels):
-        abs_dist += abs(label - classifier(data))
+        abs_dist.append(abs(label - classifier(data)))
+    return abs_dist
 
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and str(sys.argv[1]) == "run":
+        partition = partition_by_rating()
+        print("partition done")
+        result = test_review_data()
