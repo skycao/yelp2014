@@ -22,7 +22,8 @@ def make_set_of_shingles(review_data):
     return [document.make_shingle(review, SHINGLE_LENGTH) for review in review_text]
 
 # returns a list of lists
-# each nested list contains all the reviews for a certain rating
+# the list at index i (0 <= i <= 4) contains all the reviews 
+# that gave a star rating of i + 1
 def partition_by_rating():
     review_data = get_review_data()
     partition = [[],[],[],[],[]]
@@ -51,7 +52,7 @@ def review_distance(review1, review2):
 def train_review_data():
     data, labels = [], []
     for rating, category in enumerate(partition):
-        length = len(category) / 2
+        length = len(category) // 2
         data += category[:length]
         # reviews in each category have their star rating as the label
         labels += [rating + 1] * length
@@ -63,14 +64,14 @@ def test_review_data():
     print("learning done")
     data, labels = [], []
     for rating, category in enumerate(partition):
-        length = len(category) / 2
+        length = len(category) // 2
         data += category[length:]
         # reviews in each category have their star rating as the label
         labels += [rating + 1] * length
     print("beginning to test model")
     abs_dist = []
     for datum, label in zip(data, labels):
-        abs_dist.append(abs(label - classifier(data)))
+        abs_dist.append(abs(label - classifier(datum)))
     return abs_dist
 
 if __name__ == "__main__":
