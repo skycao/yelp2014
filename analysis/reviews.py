@@ -1,3 +1,5 @@
+# execute with python3 -i reviews.py run
+
 from config import *
 from yelp2014.utilities import parse
 from yelp2014.utilities import document
