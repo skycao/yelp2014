@@ -1,6 +1,11 @@
 import time
 
 def timed(f):
+    """ Returns a function that executes f and prints out how long 
+    the execution took.
+
+    f -- a function, can have any number of parameters
+    """
     def wrapped(*args):
         start = time.time()
         result = f(*args)
