@@ -1,9 +1,9 @@
 import time
 
 def timed(f):
-    start = time.time()
     def wrapped(*args):
+        start = time.time()
         result = f(*args)
-        print("time taken by", f.__name__, ": ", time.time() - start)
+        print("time taken by {0}: {1}".format(f.__name__, time.time() - start))
         return result
     return wrapped
