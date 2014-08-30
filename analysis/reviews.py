@@ -158,7 +158,9 @@ def construct_tf_idf_tables():
 if __name__ == "__main__":
     if "TIMED" in sys.argv:
         TIMED = True
-    if "run" in sys.argv:
+    if "knn" in sys.argv:
         partition = partition_by_rating()
         print("partition done")
         result = test_review_data()
+    if "tfidf" in sys.argv:
+        tf_idf_scores = construct_tf_idf_tables()
