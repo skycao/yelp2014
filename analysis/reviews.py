@@ -7,6 +7,7 @@ from config import *
 from yelp2014.utilities import parse
 from yelp2014.utilities import document
 from yelp2014.utilities import kNN
+from yelp2014.utilities import output
 
 TIMED = False
 
