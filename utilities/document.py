@@ -136,5 +136,5 @@ def tf_idf(documents):
     tf_idf_dict = [dict([(term, term_freq[term] * inv_doc_freq_dict[term]) for term in term_freq]) 
                    for term_freq in term_freq_dicts]
 
-    return tf_idf_dicts
+    return tf_idf_dict
     
