@@ -147,7 +147,7 @@ def test_review_data():
     return abs_dist
 
 def compute_tf_idf(review_data):
-    """ Computes the tf_idf scores of the words found in the reviews
+    """ Computes the TF.IDF scores of the words found in the reviews
     of review_data. Returns a list of dictionaries. Each dictionary corresponds
     to a review, and maps words found in the review to the words' tf_idf scores.
     
@@ -158,7 +158,7 @@ def compute_tf_idf(review_data):
     
     
 def construct_tf_idf_tables():
-    """ Computes the tf_idf scores for each of the star rating categories.
+    """ Computes the TF.IDF scores for each of the star rating categories.
     The individual categories are treated as different sets of documents, so
     5 sets of tf_idf scores are computed. A list of five lists is returned, where
     each nested list is a list of dictionaries. Each nested list corresponds to
@@ -168,6 +168,18 @@ def construct_tf_idf_tables():
 
     """
     return [compute_tf_idf(category) for category in partition]
+
+def write_tf_idf_scores():
+    """ Writes the computed TF.IDF to five separate files, one for each star rating.
+    Returns the same list constructed by construct_tf_idf_tables().
+
+    """
+    result = construct_tf_idf_tables()
+    file_name = "review_text_tf_idf_scores"
+    for index, category in enumerate(results):
+        # i.e. if 2 stars, write to "review_text_tf_idf_scores_2star.json"
+        output.write_to_file(category, file_name + "_" + str(index + 1) + "star.json", ROOT + "/output")
+    returns result
 
 if __name__ == "__main__":
     if "TIMED" in sys.argv:
@@ -179,4 +191,4 @@ if __name__ == "__main__":
     if "knn" in sys.argv:
         result = test_review_data()
     if "tfidf" in sys.argv:
-        tf_idf_scores = construct_tf_idf_tables()
+        tf_idf_scores = write_tf_idf_scores()
