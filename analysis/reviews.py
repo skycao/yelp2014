@@ -16,6 +16,18 @@ SHINGLE_LENGTH = 4
 NEAREST_NEIGHBOR_THRESHOLD = 5
 partition = [[],[],[],[],[]]
 
+def make_timed_utilities():
+    """ Adds the timed decorator imported from decorators (from config) 
+    to certain utility functions.
+
+    """
+    document.make_shingle = timed(document.make_shingle)
+    document.make_set = timed(document.make_set)
+    document.strip_punctuation = timed(document.strip_punctuation)
+    document.term_freq = timed(document.term_freq)
+    document.inverse_doc_freq = timed(document.inverse_doc_freq)
+    document.tf_idf = timed(document.tf_idf)
+
 def get_review_text(review_data):
     """ Constructs the list of review text corresponding to each review
     from the list review_data.
@@ -160,6 +172,7 @@ def construct_tf_idf_tables():
 if __name__ == "__main__":
     if "TIMED" in sys.argv:
         TIMED = True
+        make_timed_utilities()
     if "run" in sys.argv:
         partition = partition_by_rating()
         print("partition done")
