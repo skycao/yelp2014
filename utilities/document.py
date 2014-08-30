@@ -100,7 +100,6 @@ def inverse_doc_freq(term_freq_dicts):
     returned by term_freq()
     """
     assert type(term_freq_dicts) is list, "must provide a list (of dictionaries)"
-    start = time.time()
 
     inv_doc_freq_dict = {}
     for freq_dict in term_freq_dicts:
@@ -112,9 +111,7 @@ def inverse_doc_freq(term_freq_dicts):
 
     num_docs = len(term_freq_dicts)
     for term in inv_doc_freq_dict:
-        inv_doc_freq_dict[term] = math.log(num_docs / float(inv_doc_freq_dict[term]), 2)
-    
-    print("inverse_doc_freq took %d", time.time() - start)
+        inv_doc_freq_dict[term] = math.log(num_docs / float(inv_doc_freq_dict[term]), 2)    
     return inv_doc_freq_dict
 
 def tf_idf(documents):
