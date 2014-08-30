@@ -180,7 +180,7 @@ def write_tf_idf_scores():
     for index, category in enumerate(results):
         # i.e. if 2 stars, write to "review_text_tf_idf_scores_2star.json"
         output.write_to_file(category, file_name + "_" + str(index + 1) + "star.json", ROOT + "/output")
-    returns result
+    return result
 
 if __name__ == "__main__":
     if "TIMED" in sys.argv:
