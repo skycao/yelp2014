@@ -1,6 +1,7 @@
 # execute with python3 -i reviews.py run
-# run with python3 -i reviews.py run TIMED
-# to have certain functions time themselves
+# add a knn flag to do k-nearest-neighbors classification
+# add a tfidf flag to compute the TF.IDF scores
+# add a TIMED flag to have certain functions time themselves
 
 from config import *
 from yelp2014.utilities import parse
@@ -158,9 +159,10 @@ def construct_tf_idf_tables():
 if __name__ == "__main__":
     if "TIMED" in sys.argv:
         TIMED = True
-    if "knn" in sys.argv:
+    if "run" in sys.argv:
         partition = partition_by_rating()
         print("partition done")
+    if "knn" in sys.argv:
         result = test_review_data()
     if "tfidf" in sys.argv:
         tf_idf_scores = construct_tf_idf_tables()
