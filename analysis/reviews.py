@@ -27,6 +27,7 @@ def make_timed_utilities():
     document.term_freq = timed(document.term_freq)
     document.inverse_doc_freq = timed(document.inverse_doc_freq)
     document.tf_idf = timed(document.tf_idf)
+    output.write_to_file = timed(output.write_to_file)
 
 def get_review_text(review_data):
     """ Constructs the list of review text corresponding to each review
