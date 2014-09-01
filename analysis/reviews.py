@@ -21,11 +21,6 @@ def make_timed_utilities():
     to certain utility functions.
 
     """
-    document.make_shingle = timed(document.make_shingle)
-    document.make_set = timed(document.make_set)
-    document.strip_punctuation = timed(document.strip_punctuation)
-    document.term_freq = timed(document.term_freq)
-    document.inverse_doc_freq = timed(document.inverse_doc_freq)
     document.tf_idf = timed(document.tf_idf)
     output.write_to_file = timed(output.write_to_file)
 
