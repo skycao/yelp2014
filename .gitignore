@@ -1,6 +1,9 @@
 # ignore all files in data directory
 data/
 
+# ignore output files
+output/
+
 # ignore backup files
 *~
 
