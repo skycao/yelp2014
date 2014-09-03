@@ -152,6 +152,33 @@ def compute_tf_idf(review_data):
     reviews = [review["text"] for review in review_data]
     return document.tf_idf(reviews)
     
+def construct_tf_idf(star_rating):
+    """ Computes the TF.IDF scores for the set of reviews of the given star
+    rating. Returns a list of dictionaries; each dictionary corresponds to a
+    review. The keys are words found in the reviews, and the values are the
+    TF.IDF scores of the keys.
+
+    star_rating -- integer between 1 and 5
+    """
+    assert type(star_rating) is int, "must provide integer"
+    assert 1 <= star_rating and star_rating <= 5, "star_rating must be between 1 and 5"
+
+    return compute_tf_idf(partition[star_rating - 1])
+
+def write_tf_idf(star_rating):
+    """ Writes the computed TF.IDF scores for the set reviews of the given
+    star rating to a file. Returns the same list as construct_tf_idf(star_rating).
+
+    star_rating -- integer between 1 and 5
+    """
+    assert type(star_rating) is int, "must provide integer"
+    assert 1 <= star_rating and star_rating <= 5, "star_rating must be between 1 and 5"
+
+    tf_idf_table = construct_tf_idf(star_rating)
+    file_name = "review_text_tf_idf_scores"
+    output.write_to_file(category, file_name + "_" + str(star_rating) + "star.json", ROOT + "/output")
+    return tf_idf_table
+    
     
 def construct_tf_idf_tables():
     """ Computes the TF.IDF scores for each of the star rating categories.
@@ -159,8 +186,8 @@ def construct_tf_idf_tables():
     5 sets of tf_idf scores are computed. A list of five lists is returned, where
     each nested list is a list of dictionaries. Each nested list corresponds to
     a star rating category, and each dictionary in the nested list corresponds to
-    a review in that star rating category. The dictionaries maps words found in the
-    corresponding reviews to the words' tf_idf scores.
+    a review in that star rating category. The dictionaries map words found in the
+    corresponding reviews to the words' TF.IDF scores.
 
     """
     return [compute_tf_idf(category) for category in partition]
@@ -173,7 +200,6 @@ def write_tf_idf_scores():
     result = construct_tf_idf_tables()
     file_name = "review_text_tf_idf_scores"
     for index, category in enumerate(result):
-        # i.e. if 2 stars, write to "review_text_tf_idf_scores_2star.json"
         output.write_to_file(category, file_name + "_" + str(index + 1) + "star.json", ROOT + "/output")
     return result
 
